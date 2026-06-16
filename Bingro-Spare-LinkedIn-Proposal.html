@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bingro × PayWithSpare — LinkedIn Visibility Sprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --red: #FA3E3E;
+    --dim: #cccccc;
+    --subtle: #111111;
+    --border: #252525;
+    --muted: #888888;
+  }
+
+  html, body { width:100%; height:100%; background:var(--black); font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; overflow:hidden; color:var(--white); }
+  .deck { width:100%; height:100%; position:relative; }
+
+  .slide { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:60px 100px; opacity:0; pointer-events:none; transition:opacity 0.35s ease; }
+  .slide.active { opacity:1; pointer-events:all; }
+
+  /* NAV */
+  .nav { position:fixed; bottom:36px; right:56px; display:flex; align-items:center; gap:20px; z-index:100; }
+  .nav-dots { display:flex; gap:7px; }
+  .dot { width:5px; height:5px; border-radius:50%; background:#2a2a2a; cursor:pointer; transition:background 0.2s,transform 0.2s; }
+  .dot.active { background:var(--red); transform:scale(1.5); }
+  .nav-arrows { display:flex; gap:10px; }
+  .arrow { width:38px; height:38px; border:1px solid #2a2a2a; border-radius:4px; background:none; color:var(--white); font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color 0.2s,background 0.2s; }
+  .arrow:hover { border-color:var(--red); background:rgba(250,62,62,0.07); }
+  .slide-counter { position:fixed; bottom:36px; left:56px; font-size:11px; color:#444; letter-spacing:0.12em; font-weight:600; }
+
+  /* BG */
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px); background-size:72px 72px; pointer-events:none; }
+  .cover-bar { position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--red); }
+
+  /* TYPE */
+  .story-label { font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .story-label span { color:var(--red); }
+  .label { font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); margin-bottom:20px; }
+  .h1 { font-size:clamp(44px,6vw,88px); font-weight:800; line-height:0.96; letter-spacing:-0.035em; }
+  .h2 { font-size:clamp(28px,3.4vw,50px); font-weight:700; line-height:1.07; letter-spacing:-0.025em; }
+  .body  { font-size:clamp(14px,1.15vw,17px); line-height:1.65; color:#e0e0e0; }
+  .body-w { font-size:clamp(14px,1.15vw,17px); line-height:1.65; color:var(--white); }
+  .red { color:var(--red); }
+  .divider { width:44px; height:3px; background:var(--red); margin:22px 0; }
+
+  /* LAYOUT */
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:60px; width:100%; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+
+<!-- ══════════════════════════════════════════════════════════
+     01 · COVER
+══════════════════════════════════════════════════════════ -->
+<div class="slide active" data-slide="1">
+  <div class="cover-bar"></div>
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.16em;color:#555;text-transform:uppercase;margin-bottom:68px;">
+      <span style="color:var(--white);">Bingro</span> · Content and Brand
+    </div>
+    <div class="h1">LinkedIn<br><span class="red">Visibility<br>Sprint</span></div>
+    <div class="divider"></div>
+    <div class="body" style="max-width:520px;font-size:18px;color:#e0e0e0;">
+      15 days · 5 accounts · 3 geographies<br>Built around the September school window
+    </div>
+    <div style="margin-top:52px;font-size:12px;font-weight:500;letter-spacing:0.1em;color:#555;text-transform:uppercase;">
+      June 2026 &nbsp;·&nbsp; PayWithSpare &nbsp;·&nbsp; Confidential
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     02 · THE PROBLEM
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="2">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>01</span> · The Problem</div>
+    <div class="h2" style="margin-bottom:40px;">The product works.<br><span class="red">The world doesn't know it exists.</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;">
+
+      <!-- LEFT: what you built -->
+      <div style="background:#080808;border:1px solid var(--border);border-radius:10px;padding:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);margin-bottom:24px;">What Spare has built</div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:baseline;gap:12px;">
+            <div style="font-size:52px;font-weight:900;color:var(--red);letter-spacing:-0.04em;line-height:1;">10M+</div>
+            <div style="font-size:14px;color:#e0e0e0;font-weight:500;">transactions processed</div>
+          </div>
+          <div style="height:1px;background:var(--border);"></div>
+          <div style="display:flex;align-items:baseline;gap:12px;">
+            <div style="font-size:52px;font-weight:900;color:var(--red);letter-spacing:-0.04em;line-height:1;">200+</div>
+            <div style="font-size:14px;color:#e0e0e0;font-weight:500;">schools across 8 countries</div>
+          </div>
+          <div style="height:1px;background:var(--border);"></div>
+          <div style="display:flex;align-items:baseline;gap:12px;">
+            <div style="font-size:52px;font-weight:900;color:var(--red);letter-spacing:-0.04em;line-height:1;">10yr</div>
+            <div style="font-size:14px;color:#e0e0e0;font-weight:500;">of building the product</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: what the world sees -->
+      <div style="background:#080808;border:1px solid var(--border);border-radius:10px;padding:32px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">What the world sees online</div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:baseline;gap:12px;">
+            <div style="font-size:52px;font-weight:900;color:var(--white);letter-spacing:-0.04em;line-height:1;">892</div>
+            <div style="font-size:14px;color:#e0e0e0;font-weight:500;">CEO LinkedIn followers</div>
+          </div>
+          <div style="height:1px;background:var(--border);"></div>
+          <div style="display:flex;align-items:baseline;gap:12px;">
+            <div style="font-size:52px;font-weight:900;color:var(--white);letter-spacing:-0.04em;line-height:1;">3mo</div>
+            <div style="font-size:14px;color:#e0e0e0;font-weight:500;">since last company post</div>
+          </div>
+          <div style="height:1px;background:var(--border);"></div>
+          <div style="display:flex;align-items:baseline;gap:12px;">
+            <div style="font-size:52px;font-weight:900;color:var(--white);letter-spacing:-0.04em;line-height:1;">0</div>
+            <div style="font-size:14px;color:#e0e0e0;font-weight:500;">posts from 2 of 5 team members</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:16px;padding:16px 24px;border-left:3px solid var(--red);background:rgba(250,62,62,0.04);border-radius:0 6px 6px 0;">
+      <div style="font-size:15px;font-weight:600;color:var(--white);">The schools who should refer you haven't found you. The investors watching this space don't see you. None of this is a product problem.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     03 · THE MOMENT
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="3">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>02</span> · The Moment</div>
+    <div class="h2" style="margin-bottom:14px;">Schools close in days.<br><span class="red">September decisions start now.</span></div>
+    <div class="body" style="max-width:640px;margin-bottom:40px;">
+      End of school year is the best content moment of the calendar. School admins reflect on what worked. Budgets for next year open. Any school without a vendor decision by mid-July will not onboard before October.
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;margin-bottom:20px;">
+      <div style="border-radius:8px;padding:24px 20px;border:2px solid var(--white);background:rgba(255,255,255,0.04);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);margin-bottom:10px;">Now · June</div>
+        <div style="font-size:28px;font-weight:900;color:var(--white);margin-bottom:8px;">School<br>closes</div>
+        <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Admins reflect. Budgets open. This is the window.</div>
+      </div>
+      <div style="border-radius:8px;padding:24px 20px;border:2px solid var(--red);background:rgba(250,62,62,0.06);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">July · Decision</div>
+        <div style="font-size:28px;font-weight:900;color:var(--red);margin-bottom:8px;">Vendors<br>get picked</div>
+        <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Schools that find you here onboard in time for September.</div>
+      </div>
+      <div style="border-radius:8px;padding:24px 20px;border:1px solid var(--border);background:#060606;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">August · Closed</div>
+        <div style="font-size:28px;font-weight:900;color:var(--muted);margin-bottom:8px;">Too<br>late</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5;">Schools in prep mode. No time to onboard anything new.</div>
+      </div>
+      <div style="border-radius:8px;padding:24px 20px;border:1px solid var(--border);background:#060606;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">September · Reset</div>
+        <div style="font-size:28px;font-weight:900;color:var(--muted);margin-bottom:8px;">New<br>year starts</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5;">Schools that didn't decide wait 12 more months.</div>
+      </div>
+    </div>
+
+    <div style="padding:16px 22px;border:1px solid var(--border);border-radius:8px;background:var(--subtle);">
+      <div style="font-size:14px;font-weight:600;color:var(--white);">Starting the wave right now, as schools close, puts Spare in front of decision-makers at the exact moment they're thinking about next year.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     04 · THE SOLUTION
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="4">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>03</span> · The Solution</div>
+    <div class="split" style="align-items:center;gap:80px;">
+
+      <div>
+        <div class="h2" style="margin-bottom:20px;">One coordinated wave.<br><span class="red">Five voices.<br>15 days.</span></div>
+        <div class="body" style="margin-bottom:20px;">Not one person posting. Every relevant voice at Spare, posting in their own words, amplifying each other — one wave of visibility before the September window closes.</div>
+        <div class="body" style="padding:16px 20px;border-left:3px solid var(--red);background:rgba(250,62,62,0.04);border-radius:0 6px 6px 0;">
+          When the CEO posts and all four team members comment within the hour, that post reaches five separate networks at once. Comments are the engine.
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="border:1px solid var(--border);border-radius:8px;padding:28px 22px;background:#080808;text-align:center;">
+          <div style="font-size:56px;font-weight:900;color:var(--red);letter-spacing:-0.04em;line-height:1;">15</div>
+          <div style="font-size:12px;font-weight:600;color:#e0e0e0;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">posts in 15 days</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:28px 22px;background:#080808;text-align:center;">
+          <div style="font-size:56px;font-weight:900;color:var(--red);letter-spacing:-0.04em;line-height:1;">5</div>
+          <div style="font-size:12px;font-weight:600;color:#e0e0e0;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">team accounts</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:28px 22px;background:#080808;text-align:center;">
+          <div style="font-size:56px;font-weight:900;color:var(--white);letter-spacing:-0.04em;line-height:1;">5.8K</div>
+          <div style="font-size:12px;font-weight:600;color:#e0e0e0;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">combined reach</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:28px 22px;background:#080808;text-align:center;">
+          <div style="font-size:56px;font-weight:900;color:var(--white);letter-spacing:-0.04em;line-height:1;">£0</div>
+          <div style="font-size:12px;font-weight:600;color:#e0e0e0;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">ad spend needed</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     05 · THE TEAM
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="5">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>04</span> · The Team</div>
+    <div style="font-size:clamp(20px,2.2vw,30px);font-weight:700;color:var(--white);margin-bottom:28px;">Five people · Three geographies · One story</div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;width:100%;margin-bottom:20px;">
+
+      <div style="border:1px solid var(--border);border-radius:8px;padding:20px 18px;background:#080808;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">CEO · Cairo</div>
+        <div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:12px;">Mohamed Zohair</div>
+        <div style="font-size:30px;font-weight:900;color:var(--white);letter-spacing:-0.03em;line-height:1;margin-bottom:4px;">892</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">followers</div>
+        <div style="font-size:12px;color:#e0e0e0;line-height:1.5;padding-top:12px;border-top:1px solid var(--border);">Vision, market insight, founder stories</div>
+      </div>
+
+      <div style="border:1px solid var(--red);border-radius:8px;padding:20px 18px;background:rgba(250,62,62,0.04);">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Operations · Cairo</div>
+        <div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:12px;">Youssef Sameh</div>
+        <div style="font-size:16px;font-weight:800;color:var(--red);letter-spacing:-0.01em;line-height:1.2;margin-bottom:4px;">Already posting</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">best performer on team</div>
+        <div style="font-size:12px;color:#e0e0e0;line-height:1.5;padding-top:12px;border-top:1px solid rgba(250,62,62,0.3);">School ops, what makes a cashless campus work</div>
+      </div>
+
+      <div style="border:1px solid #333;border-radius:8px;padding:20px 18px;background:#080808;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">BD · Cairo</div>
+        <div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:12px;">Hana Elsaey</div>
+        <div style="font-size:30px;font-weight:900;color:var(--white);letter-spacing:-0.03em;line-height:1;margin-bottom:4px;">2,532</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">biggest audience on team</div>
+        <div style="font-size:12px;color:#e0e0e0;line-height:1.5;padding-top:12px;border-top:1px solid var(--border);">School discovery, BD insights, 90-day view</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:8px;padding:20px 18px;background:#080808;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">CTO · Canada</div>
+        <div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:12px;">Mohamad Tawakol</div>
+        <div style="font-size:30px;font-weight:900;color:var(--white);letter-spacing:-0.03em;line-height:1;margin-bottom:4px;">506</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">never posted · unique angle</div>
+        <div style="font-size:12px;color:#e0e0e0;line-height:1.5;padding-top:12px;border-top:1px solid var(--border);">Building from Canada for MENA — untold story</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:8px;padding:20px 18px;background:#080808;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">BD GCC · Bahrain</div>
+        <div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:12px;">Ismail Gharib</div>
+        <div style="font-size:30px;font-weight:900;color:var(--white);letter-spacing:-0.03em;line-height:1;margin-bottom:4px;">958</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">Gulf market voice</div>
+        <div style="font-size:12px;color:#e0e0e0;line-height:1.5;padding-top:12px;border-top:1px solid var(--border);">Gulf schools, enterprise buyers, what GCC is different</div>
+      </div>
+
+    </div>
+
+    <div style="padding:14px 22px;border:1px solid var(--border);border-radius:8px;background:var(--subtle);display:flex;align-items:center;gap:16px;">
+      <div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.14em;white-space:nowrap;">The rule</div>
+      <div style="font-size:14px;color:#e0e0e0;">Every team member comments on every other team member's post within 4 hours. One real sentence. This is how the wave reaches all five networks simultaneously.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     06 · THE 15 DAYS
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="6">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>05</span> · The Plan</div>
+    <div style="font-size:clamp(20px,2.2vw,28px);font-weight:700;color:var(--white);margin-bottom:24px;">15 days · 3 phases · one post per day</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%;">
+
+      <!-- Phase 1 -->
+      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+        <div style="padding:14px 18px;background:#0f0f0f;border-bottom:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Phase 1 · Days 1 to 5</div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">End of Year</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Timely, emotional, urgent</div>
+        </div>
+        <div style="padding:6px 0;">
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D1</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">CEO</div>
+              <div style="font-size:11px;color:#e0e0e0;">Schools close in days</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D2</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Youssef</div>
+              <div style="font-size:11px;color:#e0e0e0;">End of year from the ops side</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D3</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Hana</div>
+              <div style="font-size:11px;color:#e0e0e0;">The call I make when school closes</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D4</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Tawakol</div>
+              <div style="font-size:11px;color:#e0e0e0;">The number I check at year end</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D5</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">CEO</div>
+              <div style="font-size:11px;color:#e0e0e0;">The invisible stat  <span style="color:var(--red);">+ visual</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+        <div style="padding:14px 18px;background:#0f0f0f;border-bottom:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Phase 2 · Days 6 to 11</div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">Brand and Proof</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Stories, insight, the poll</div>
+        </div>
+        <div style="padding:6px 0;">
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D6</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Ismail</div>
+              <div style="font-size:11px;color:#e0e0e0;">GCC schools are closing too</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D7</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">CEO</div>
+              <div style="font-size:11px;color:#e0e0e0;">The wristband story</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D8</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Youssef</div>
+              <div style="font-size:11px;color:#e0e0e0;">The September window</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;background:rgba(250,62,62,0.04);">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D9</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--red);">Brand Page · Poll</div>
+              <div style="font-size:11px;color:#e0e0e0;">When do schools actually decide?</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D10</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Hana</div>
+              <div style="font-size:11px;color:#e0e0e0;">90 days of school BD</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D11</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Tawakol</div>
+              <div style="font-size:11px;color:#e0e0e0;">Building from Canada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+        <div style="padding:14px 18px;background:#0f0f0f;border-bottom:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Phase 3 · Days 12 to 15</div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);">Convert</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Trust, invitation, pipeline</div>
+        </div>
+        <div style="padding:6px 0;">
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D12</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Ismail</div>
+              <div style="font-size:11px;color:#e0e0e0;">The GCC school buyer</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D13</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">CEO</div>
+              <div style="font-size:11px;color:#e0e0e0;">The trust problem</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid #181818;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D14</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--white);">Youssef</div>
+              <div style="font-size:11px;color:#e0e0e0;">The school that said no</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px 18px;background:rgba(250,62,62,0.04);border-top:1px solid rgba(250,62,62,0.2);">
+            <div style="font-size:11px;font-weight:700;color:var(--red);min-width:32px;">D15</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--red);">CEO · The Invitation</div>
+              <div style="font-size:11px;color:#e0e0e0;">If you run a school, let's talk</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:14px 18px;border-top:1px solid var(--border);background:#0a0a0a;">
+          <div style="font-size:12px;color:#e0e0e0;line-height:1.5;">Day 15 is a direct CTA. 14 days of content make this land as a warm invitation, not a cold ask.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     07 · DELIVERABLES
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="7">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>06</span> · What Bingro Delivers</div>
+    <div class="split" style="align-items:flex-start;gap:48px;">
+
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:32px;font-weight:900;color:var(--red);min-width:36px;line-height:1;">1</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;">5 profile rewrites</div>
+            <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">New headline and About section for every team member. Written in their voice. Company page overhaul included.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:32px;font-weight:900;color:var(--red);min-width:36px;line-height:1;">2</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;">15 fully written posts</div>
+            <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Every post written, approved, ready to copy-paste. Each one sounds like the person posting it.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:18px 0;">
+          <div style="font-size:32px;font-weight:900;color:var(--red);min-width:36px;line-height:1;">3</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;">Cross-amplification scripts</div>
+            <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Specific comment for each person to leave on each other's posts. Ready to copy. This is the wave mechanic.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:32px;font-weight:900;color:var(--red);min-width:36px;line-height:1;">4</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;">2 visual assets</div>
+            <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Stat card for the Day 5 post and banner. Territory map for Day 13. Both designed by Bingro.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);">
+          <div style="font-size:32px;font-weight:900;color:var(--red);min-width:36px;line-height:1;">5</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;">LinkedIn Poll</div>
+            <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Full poll copy written and set up on Day 9. Designed to get 200+ votes and create a follow-up post.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:18px 0;">
+          <div style="font-size:32px;font-weight:900;color:var(--red);min-width:36px;line-height:1;">6</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;">Schedule and go-live checklist</div>
+            <div style="font-size:13px;color:#e0e0e0;line-height:1.5;">Day-by-day timing for each person. Setup checklist for profiles. Engagement log to track the 15 days.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     08 · BEFORE DAY 1
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="8">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>07</span> · Before Day 1</div>
+    <div class="split" style="align-items:flex-start;gap:56px;">
+      <div>
+        <div class="h2" style="margin-bottom:8px;">What Spare's<br>team does once.</div>
+        <div class="body" style="margin-bottom:28px;color:var(--muted);">30 minutes per person. Bingro writes everything, you approve and paste.</div>
+
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0;"></div>
+            <div style="font-size:14px;color:#e0e0e0;line-height:1.5;"><span style="color:var(--white);font-weight:600;">Ismail</span> · Update headline today. Currently shows certifications from 2013. No mention of Spare anywhere. <span style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Most urgent</span></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0;"></div>
+            <div style="font-size:14px;color:#e0e0e0;line-height:1.5;"><span style="color:var(--white);font-weight:600;">All 5</span> · Enable Creator Mode. Changes the main CTA from Connect to Follow. Needed for the wave to build an audience.</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0;"></div>
+            <div style="font-size:14px;color:#e0e0e0;line-height:1.5;"><span style="color:var(--white);font-weight:600;">All 5</span> · Paste new headline and About. Bingro writes it. Read it, adjust anything that doesn't sound like you, update.</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0;"></div>
+            <div style="font-size:14px;color:#e0e0e0;line-height:1.5;"><span style="color:var(--white);font-weight:600;">Mohamed + Company Page</span> · Upload stat card banner. Bingro provides the file.</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0;"></div>
+            <div style="font-size:14px;color:#e0e0e0;line-height:1.5;"><span style="color:var(--white);font-weight:600;">Company Page</span> · Change category from Retail to Financial Services. 2 minutes. Changes how the page appears in search.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="padding:28px;border:1px solid var(--red);border-radius:10px;background:rgba(250,62,62,0.04);margin-bottom:16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">The one team rule</div>
+          <div style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:10px;line-height:1.4;">Every team member comments on every other team member's post within 4 hours.</div>
+          <div style="font-size:14px;color:#e0e0e0;line-height:1.6;">Not a like. A comment. One specific sentence. Bingro writes all the suggested comments in advance so nobody has to think about it in real time.</div>
+        </div>
+        <div style="padding:22px;border:1px solid var(--border);border-radius:10px;background:#080808;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">One 30-minute team call</div>
+          <div style="font-size:14px;color:#e0e0e0;line-height:1.6;">Before Day 1, Bingro walks the full team through the calendar. Read the posts out loud, make sure every voice sounds right. The wave only works when the team is aligned on the mechanic.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     09 · WHAT HAPPENS AFTER
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="9">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="story-label"><span>08</span> · What Happens After</div>
+    <div class="h2" style="margin-bottom:36px;">Day 15 is not the end.<br><span class="red">It's when the pipeline starts.</span></div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;">
+      <div style="border:1px solid var(--border);border-radius:8px;padding:24px 18px;background:#080808;">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">CEO followers</div>
+        <div style="font-size:26px;font-weight:800;color:var(--muted);letter-spacing:-0.02em;">892</div>
+        <div style="font-size:18px;color:var(--muted);margin:4px 0;">to</div>
+        <div style="font-size:34px;font-weight:900;color:var(--red);letter-spacing:-0.03em;">1,200+</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:24px 18px;background:#080808;">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">Team combined reach</div>
+        <div style="font-size:26px;font-weight:800;color:var(--muted);letter-spacing:-0.02em;">5,800</div>
+        <div style="font-size:18px;color:var(--muted);margin:4px 0;">to</div>
+        <div style="font-size:34px;font-weight:900;color:var(--red);letter-spacing:-0.03em;">8,000+</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:24px 18px;background:#080808;">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">Poll responses</div>
+        <div style="font-size:26px;font-weight:800;color:var(--muted);letter-spacing:-0.02em;">0</div>
+        <div style="font-size:18px;color:var(--muted);margin:4px 0;">to</div>
+        <div style="font-size:34px;font-weight:900;color:var(--red);letter-spacing:-0.03em;">200+</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:24px 18px;background:#080808;">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">Warm inbound DMs</div>
+        <div style="font-size:26px;font-weight:800;color:var(--muted);letter-spacing:-0.02em;">0</div>
+        <div style="font-size:18px;color:var(--muted);margin:4px 0;">to</div>
+        <div style="font-size:34px;font-weight:900;color:var(--red);letter-spacing:-0.03em;">10–20</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="padding:20px 22px;border:1px solid var(--border);border-radius:8px;background:#080808;">
+        <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px;">Phase 1 outbound lands differently</div>
+        <div style="font-size:13px;color:#e0e0e0;line-height:1.6;">When Bingro runs outbound in Phase 1, every school we contact will have already seen Spare's content. Cold outreach becomes warm outreach. The wave is the pre-heat.</div>
+      </div>
+      <div style="padding:20px 22px;border:1px solid var(--border);border-radius:8px;background:#080808;">
+        <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px;">15 assets that don't disappear</div>
+        <div style="font-size:13px;color:#e0e0e0;line-height:1.6;">Every post becomes an asset. Repurposed for the website, for sales decks, for the next sprint. The wave creates a content library that lives past Day 15.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     10 · THE CLOSE
+══════════════════════════════════════════════════════════ -->
+<div class="slide" data-slide="10">
+  <div class="cover-bar"></div>
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:1;max-width:820px;">
+    <div class="label">To Start</div>
+    <div class="h1" style="margin-bottom:28px;">Two things<br><span class="red">today.</span></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
+      <div style="padding:28px;border:1px solid var(--border);border-radius:10px;background:#080808;">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">Step 1</div>
+        <div style="font-size:20px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:12px;">Approve the plan</div>
+        <div style="font-size:14px;color:#e0e0e0;line-height:1.6;">Bingro shares all 15 posts. One round of edits. Set the go-live date. The wave starts the morning after you say go.</div>
+      </div>
+      <div style="padding:28px;border:1px solid var(--red);border-radius:10px;background:rgba(250,62,62,0.04);">
+        <div style="font-size:10px;font-weight:700;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">Step 2</div>
+        <div style="font-size:20px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:12px;">Each team member fixes their profile</div>
+        <div style="font-size:14px;color:#e0e0e0;line-height:1.6;">Bingro provides the copy. 30 minutes per person. Ismail's headline should change today before anything else.</div>
+      </div>
+    </div>
+
+    <div style="padding:22px 28px;border:1px solid var(--border);border-radius:10px;background:var(--subtle);">
+      <div style="font-size:18px;font-weight:700;color:var(--white);">Schools close in days. The September window opens right after. The wave starts when you say go.</div>
+    </div>
+  </div>
+</div>
+
+
+</div><!-- /deck -->
+
+<div class="slide-counter" id="counter">01 / 10</div>
+<div class="nav">
+  <div class="nav-dots" id="dots"></div>
+  <div class="nav-arrows">
+    <button class="arrow" onclick="navigate(-1)">←</button>
+    <button class="arrow" onclick="navigate(1)">→</button>
+  </div>
+</div>
+
+<script>
+  const slides  = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const dotsEl  = document.getElementById('dots');
+  let current = 0;
+  const total = slides.length;
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+
+  function updateDots() {
+    document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === current));
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, n));
+    slides[current].classList.add('active');
+    counter.textContent = String(current+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+    updateDots();
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); navigate(1); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key))         { e.preventDefault(); navigate(-1); }
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, {passive:true});
+</script>
+</body>
+</html>
